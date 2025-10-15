@@ -1,0 +1,23 @@
+<div class="chat-container">
+      <div class="chat-output" #chatOutput>
+        <div *ngIf="messages.length === 0 && !isLoading" class="fallback-message">
+          <div class="fallback-content">
+            <h3>Welcome to ChatGPT Extension</h3>
+            <p>Type a message below to start chatting!</p>
+          </div>
+        </div>
+        <div *ngFor="let message of messages"
+             [ngClass]="message.role === 'user' ? 'user-message' : 'ai-message'">
+          {{ message.content }}
+        </div>
+        <div *ngIf="isLoading" class="loading-container">
+          <div class="loader"></div>
+          <span>Loading...</span>
+        </div>
+      </div>
+      <div class="input-container">
+        <textarea #textarea
+                  placeholder="Type your message..."
+                  ></textarea>
+      </div>
+    </div>
